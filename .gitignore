@@ -1,0 +1,10 @@
+DAZFix/__pycache__
+__pycache__
+
+# PyInstaller files
+/build
+/dist
+*.spec
+
+# stores paths on user's machine
+*.pkl
