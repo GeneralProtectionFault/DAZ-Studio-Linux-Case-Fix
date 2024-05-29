@@ -175,7 +175,9 @@ def fix_libraries(backup_first, backup_zip_path, daz_default_library_path, daz_u
                 log_to_ui(f'NEW: {dupe_dirs_in_default_folder[0]}')
                 
                 # Here we just need to rename to the default case
-                os.rename(old_path, new_path)
+                # This may have been addressed by the fix to the user's library above, so check...
+                if old_path:
+                    os.rename(old_path, new_path)
                 
     globals.process_running = False
     log_to_ui("Complete!")
