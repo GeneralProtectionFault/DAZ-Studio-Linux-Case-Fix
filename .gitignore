@@ -1,6 +1,9 @@
 DAZFix/__pycache__
 __pycache__
 
+# Virtual Environment
+.dazfix
+
 # PyInstaller files
 /build
 /dist

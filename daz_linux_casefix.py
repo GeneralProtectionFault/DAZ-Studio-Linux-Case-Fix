@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from PyQt6 import uic
 import qdarktheme
 
+
 import sys
 import os
 import pickle
@@ -137,7 +138,7 @@ class DAZWranglerApp(QMainWindow):
         except Exception as argument:
             msg_box = QMessageBox(self)
             msg_box.setWindowTitle("ERROR: Fixing Libararies")
-            msg_box.setText(argument)
+            msg_box.setText(str(argument))
             msg_box.show()
             return
 

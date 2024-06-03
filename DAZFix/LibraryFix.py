@@ -25,7 +25,7 @@ class HaltException(Exception): pass
 
 
 def move_to_new_home(dupe_dirs_folder, dest_full_path, root):
-    print(f'Moving objects into {dest_full_path}')
+    log_to_ui(f'Moving objects into {dest_full_path}')
     for item in dupe_dirs_folder:
         dupe_folder_path = os.path.join(root, item)
         
@@ -36,16 +36,35 @@ def move_to_new_home(dupe_dirs_folder, dest_full_path, root):
         
         # Move the files into the chosen directory
         # subfolder_alone = os.path.basename(os.path.normpath(dupe_folder_path))
+        # log_to_ui(f'Getting all objects within: {dupe_folder_path}')
         objects_within_folder = os.listdir(dupe_folder_path)
         
         for obj in objects_within_folder:
             source = os.path.join(dupe_folder_path, obj)
             destination = os.path.join(dest_full_path, obj)
-            print(f'Moving {obj} => {destination}');
-            shutil.move(source, destination)
-            
+
+            # If we're moving a folder, shutil will put the folder inside the "destination" if it does not exist.
+            # However, if the destination folder already has that folder, it puts it INSIDE that folder, creating something like
+            # TheFolder/Characters/Characters....FML
+            if os.path.isdir(destination):
+                if os.path.isdir(source):
+                    for file in os.listdir(source):
+                        src = os.path.join(source, file)
+                        dest = os.path.join(destination, file)
+                        log_to_ui(f'Moving {src} => {destination}')
+
+                        if os.path.isdir(source):
+                            shutil.move(src, dest)
+                        else:
+                            shutil.copy2(src, dest)
+                        
+            else:
+                log_to_ui(f'Moving {obj} => {destination}')
+                shutil.move(source, destination)
+
         # Now that all the files are moved out, delete the directory
-        os.rmdir(dupe_folder_path)
+        if os.path.isdir(dupe_folder_path):
+            shutil.rmtree(dupe_folder_path)
         
 def make_archive(source, destination):
         base = os.path.basename(destination)
@@ -143,7 +162,7 @@ def fix_libraries(backup_first, backup_zip_path, daz_default_library_path, daz_u
                     chosen_subdirectory = dupe_dirs_in_default_folder[0]
                     chosen_full_path = os.path.join(root, chosen_subdirectory)
                 else:
-                    log_to_ui('\nThere is no folder with this name in the default DAZ library')
+                    log_to_ui(f'\nThere is no folder with this name in the default DAZ library: {os.path.join(root, dupe)}')
                     # If there are multiple folders in the user's library, but none in the DAZ default library, we need to pick, but can't use the name in the DAZ default directory
                     # First, here, create a dictionary that stores the subfolder name & the number of ojbects in it
                     dupe_subdirectories = dict()
