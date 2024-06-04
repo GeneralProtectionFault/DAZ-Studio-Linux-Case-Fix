@@ -48,14 +48,15 @@ def move_to_new_home(dupe_dirs_folder, dest_full_path, root):
             # TheFolder/Characters/Characters....FML
             if os.path.isdir(destination):
                 if os.path.isdir(source):
-                    for file in os.listdir(source):
-                        src = os.path.join(source, file)
-                        dest = os.path.join(destination, file)
-                        log_to_ui(f'Moving {src} => {destination}')
-
-                        if os.path.isdir(source):
-                            shutil.move(src, dest)
+                    for obj in os.listdir(source):
+                        src = os.path.join(source, obj)
+                        dest = os.path.join(destination, obj)
+                        
+                        if os.path.isdir(src):
+                            log_to_ui(f'Moving FOLDER: {src} => {dest}')
+                            shutil.copytree(src, dest, dirs_exist_ok=True)
                         else:
+                            log_to_ui(f'Moving FILE: {src} => {dest}')
                             shutil.copy2(src, dest)
                         
             else:
@@ -63,9 +64,14 @@ def move_to_new_home(dupe_dirs_folder, dest_full_path, root):
                 shutil.move(source, destination)
 
         # Now that all the files are moved out, delete the directory
-        if os.path.isdir(dupe_folder_path):
+        if os.path.exists(dupe_folder_path):
+            log_to_ui(f'Removing folder: {dupe_folder_path}:')
+            for obj in os.listdir(dupe_folder_path):
+                # Indent to indicate objects within the folder that were removed (after being copied)
+                log_to_ui("     " + obj)
             shutil.rmtree(dupe_folder_path)
         
+
 def make_archive(source, destination):
         base = os.path.basename(destination)
         name = base.split('.')[0]
@@ -78,7 +84,7 @@ def make_archive(source, destination):
 
 
 def fix_libraries(backup_first, backup_zip_path, daz_default_library_path, daz_user_library_path):
-    log_to_ui("Fixing libraries...")
+    log_to_ui("\nFixing libraries...")
     if globals.process_running:
         return
 
@@ -195,7 +201,7 @@ def fix_libraries(backup_first, backup_zip_path, daz_default_library_path, daz_u
                 
                 # Here we just need to rename to the default case
                 # This may have been addressed by the fix to the user's library above, so check...
-                if old_path:
+                if os.path.exists(old_path):
                     os.rename(old_path, new_path)
                 
     globals.process_running = False
