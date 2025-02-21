@@ -36,7 +36,7 @@ class DAZWranglerApp(QMainWindow):
 
         self.ui.btnSavePaths.clicked.connect(self.save_paths)
 
-        self.ui.btnRecursive.clicked.connect(lambda: check(self.ui.txtUserPath.text()))
+        self.ui.btnRecursive.clicked.connect(lambda: check(self.ui.txtUserPath.text(), self.ui.chkRecursive.isChecked()))
 
 
 
@@ -166,6 +166,6 @@ if __name__ == '__main__':
     app.setStyleSheet(qdarktheme.load_stylesheet())
 
     print(app.style().objectName())
-    AnachronoxDATUI = DAZWranglerApp()
+    App = DAZWranglerApp()
 
     sys.exit(app.exec())

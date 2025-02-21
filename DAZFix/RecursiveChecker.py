@@ -3,6 +3,32 @@ import os
 import shutil
 
 
+def check_recursive(library_path):
+    dupe_folders = []
+    for (root, dirs, files) in os.walk(library_path, topdown=True):
+        for dir in dirs:
+            full_directory = os.path.join(root,dir)
+            # if current_depth > previous_depth and os.path.basename(os.path.normpath(full_directory)) == previous_root_end_folder:
+            if os.path.basename(os.path.normpath(root)) == os.path.basename(os.path.normpath(full_directory)):
+                log_to_ui("WARNING: Folder appears to have been placed inside itself:")
+                log_to_ui(f"Current full path: {full_directory}")
+
+                # FIX #
+                # Note the top-level folder
+                # top_folder = root
+                dupe_folder_name = os.path.basename(os.path.normpath(root))
+                
+                # Walk from this folder to find out how many matryoshka folders we have
+                for (root2, dirs2, files2) in os.walk(root, topdown=True):
+                    # Iterate over the directories for this level/root
+                    for d in dirs2:
+                        full_dir_path = os.path.join(root2,d)
+                        # Mark dupe folders with the same name as the current ("parent") folder
+                        if os.path.basename(os.path.normpath(d)) == dupe_folder_name:
+                            log_to_ui(f"Nested folder found:\n{full_dir_path}")
+
+
+
 def fix_recursive(library_path):
     dupe_folders = []
     for (root, dirs, files) in os.walk(library_path, topdown=True):
@@ -81,13 +107,20 @@ def fix_recursive(library_path):
     return True
 
 
-def check(library_path):
+def check(library_path, fix_folders):
     complete = False
     counter = 1
-    while not complete:
-        log_to_ui(f"Checking {library_path} for recursive folders, iteration {counter}-------------------------------------------------------")
-        complete = fix_recursive(library_path)
-        counter += 1
 
-    log_to_ui("Done fixing recursive folders!")
+    if fix_folders:
+        while not complete:
+            log_to_ui(f"Checking {library_path} for recursive folders, iteration {counter}-------------------------------------------------------")
+            complete = fix_recursive(library_path)
+            counter += 1
+        log_to_ui("Done fixing recursive folders!")
+    else:
+        check_recursive(library_path)
+        log_to_ui("Done checkin recursive folders!")
+        return True
+
+    
     
