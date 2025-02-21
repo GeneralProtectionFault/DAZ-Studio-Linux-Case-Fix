@@ -1,3 +1,5 @@
+# import DAZFix
+
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from PyQt6 import uic
 import qdarktheme
@@ -7,7 +9,10 @@ import sys
 import os
 import pickle
 
+
+
 from DAZFix.LibraryFix import fix_libraries, log_to_ui
+from DAZFix.RecursiveChecker import check
 
 import globals
 
@@ -30,6 +35,8 @@ class DAZWranglerApp(QMainWindow):
         self.ui.btnFixDirectories.clicked.connect(self.fix_directories)
 
         self.ui.btnSavePaths.clicked.connect(self.save_paths)
+
+        self.ui.btnRecursive.clicked.connect(lambda: check(self.ui.txtUserPath.text()))
 
 
 

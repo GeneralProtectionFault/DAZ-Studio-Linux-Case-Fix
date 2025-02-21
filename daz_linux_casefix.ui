@@ -14,19 +14,6 @@
    <string>DAZ Linux Library Fixer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnFixDirectories">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>350</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Fix Directories</string>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="txtEditLog">
     <property name="geometry">
      <rect>
@@ -37,148 +24,197 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="lblDAZMainPath">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>170</y>
-      <width>191</width>
-      <height>21</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1271</width>
+      <height>391</height>
      </rect>
     </property>
-    <property name="text">
-     <string>DAZ Main Library Path:</string>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-   </widget>
-   <widget class="QLabel" name="lblUserPath">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>230</y>
-      <width>191</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>User Library Path:</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnSelectDAZPath">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>170</y>
-      <width>161</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Select DAZ Library Path</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnUserPath">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>230</y>
-      <width>161</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Select User Library Path</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="txtDAZMainPath">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>170</y>
-      <width>841</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>/home/your_user_name/your_wine_lutrix_install_location/drive_c/Applications/Data/DAZ 3D/My DAZ 3D Library</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="txtUserPath">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>230</y>
-      <width>841</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>/home/your_user_name/your_wine_lutrix_install_location/drive_c/Applications/Data/DAZ 3D/My Library</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="chkBackup">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>30</y>
-      <width>1221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Backup Libary to ZIP first? (This will likely take minutes and be a large file!!)  **WARNING** EXPERIMENTAL--probably need to click &quot;Wait&quot; whenever app complains of not responding--multithread in future</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="txtBackupPath">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>80</y>
-      <width>841</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>/home/your_user_name/Desktop</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>80</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Backup ZIP Path:</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnBackupPath">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>80</y>
-      <width>141</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pick Backup Path</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnSavePaths">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>300</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Save Paths to File</string>
-    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QPushButton" name="btnSavePaths">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>280</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Save Paths to File</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>60</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Backup ZIP Path:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnSelectDAZPath">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>150</y>
+        <width>161</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select DAZ Library Path</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtBackupPath">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>60</y>
+        <width>841</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>/home/your_user_name/Desktop</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnFixDirectories">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>320</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fix Directories</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblDAZMainPath">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>150</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DAZ Main Library Path:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblUserPath">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>210</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>User Library Path:</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkBackup">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>10</y>
+        <width>1221</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Backup Libary to ZIP first? (This will likely take minutes and be a large file!!)  **WARNING** EXPERIMENTAL--probably need to click &quot;Wait&quot; whenever app complains of not responding--multithread in future</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtUserPath">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>210</y>
+        <width>841</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>/home/your_user_name/your_wine_lutrix_install_location/drive_c/Applications/Data/DAZ 3D/My Library</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnUserPath">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>210</y>
+        <width>161</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select User Library Path</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtDAZMainPath">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>150</y>
+        <width>841</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>/home/your_user_name/your_wine_lutrix_install_location/drive_c/Applications/Data/DAZ 3D/My DAZ 3D Library</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnBackupPath">
+      <property name="geometry">
+       <rect>
+        <x>1090</x>
+        <y>60</y>
+        <width>141</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pick Backup Path</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnRecursive">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>320</y>
+        <width>321</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Check User Library For Recursive Folders</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -187,7 +223,7 @@
      <x>0</x>
      <y>0</y>
      <width>1286</width>
-     <height>20</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>
