@@ -14,6 +14,7 @@ import globals
 
 
 def log_to_ui(text):    
+    print(text)
     globals.ui_object.ui.txtEditLog.insertPlainText(text + "\n")
 
     # Scroll to the bottom after adding the log text
