@@ -19,9 +19,10 @@ import globals
 
 
 class DAZWranglerApp(QMainWindow):
-    def __init__(self):
+    def __init__(self, ui_path):
         super().__init__()
-        self.ui = uic.loadUi(os.path.join(os.getcwd(), 'daz_linux_casefix.ui'), self)
+        self.ui = uic.loadUi(ui_path, self)
+        
         self.show()
 
         globals.ui_object = self
@@ -151,21 +152,29 @@ class DAZWranglerApp(QMainWindow):
 
 
 
+def get_resource_path(relative_path):
+    """ Get the absolute path to the resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
 
+    return os.path.join(base_path, relative_path)
 
 
 if __name__ == '__main__':
     # Prints out the themes available
     # print(QStyleFactory.keys())
 
-    # user_login_name = os.getlogin()
-    # print(user_login_name)
 
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
     app.setStyleSheet(qdarktheme.load_stylesheet())
 
     print(app.style().objectName())
-    App = DAZWranglerApp()
+    # Load the .ui file using the correct path
+    ui_file_path = get_resource_path('./daz_linux_casefix.ui')
+    App = DAZWranglerApp(ui_file_path)
 
     sys.exit(app.exec())
